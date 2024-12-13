@@ -7,12 +7,20 @@
 </head>
 <body>
     <ul>
-        @foreach ($planets as $planet)
+        @if (isset($planets))
+            @foreach ($planets as $planet)
             <li>
                 <h2>{{ $planet['name'] }}</h2>
                 <p>{{ $planet['description'] }}</p>
             </li>
-        @endforeach
+            @endforeach
+        @endif
+        @if (isset($planetss))
+            <li>
+                <h2> {{ $planetss['name'] }}</h2>
+                <p> {{ $planetss['description'] }}</p>
+            </li>
+        @endif
     </ul>
 </body>
 </html>
