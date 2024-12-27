@@ -10,7 +10,7 @@
         @if (isset($planets))
             @foreach ($planets as $planet)
             <li>
-                <h2>{{ $planet['name'] }}</h2>
+               <h2> <a href="/planets/{{ $planet['name'] }}">{{ $planet['name'] }}</a></h2>
                 <p>{{ $planet['description'] }}</p>
             </li>
             @endforeach

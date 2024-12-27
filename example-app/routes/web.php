@@ -6,11 +6,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/planets', function () {
-//     $planets = ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"];
-//     return view('planets', ['planets' => $planets]);
-// });
-
 Route::get('/planets', function() {
     $planets = [
         [
@@ -39,4 +34,16 @@ Route::get('/planets', function() {
         }
     }
     return view('planets', ['planets' => $planets]);
+});
+
+
+Route::get('/planets/{planetName}', function ($planetName) {
+    $filePath = resource_path("planets/" . ucfirst($planetName) . ".html");
+
+    if (file_exists($filePath)) {
+        $planetContent = file_get_contents($filePath);
+        return $planetContent;
+    }
+
+    abort(404, 'Planet not found');
 });
