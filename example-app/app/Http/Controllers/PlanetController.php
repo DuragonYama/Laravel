@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class PlanetController extends Controller
 {
@@ -28,16 +27,8 @@ class PlanetController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->has('planets')) {
-            $selected = ucfirst($request->get('planets'));
-            $planet = collect($this->planets)->firstWhere('name', $selected);
+        return view('index', ['planets' => $this->planets]);
 
-            if ($planet) {
-                return view('planets', ['planetss' => $planet]);
-            }
-        }
-
-        return view('planets', ['planets' => $this->planets]);
     }
 
     public function show($planetName)
